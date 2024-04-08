@@ -50,4 +50,26 @@ public class HttpRequestParserTest {
                 () -> assertThat(request.getHeader("Accept")).isEqualTo("*/*")
         );
     }
+
+    @Test
+    void 쿼리_파라매터를_파싱한다() throws IOException {
+        // given
+        String requestMessage = "GET /?a=b&c=d HTTP/1.1\n" +
+                "Host: localhost:8080\n" +
+                "Connection: keep-alive\n" +
+                "Accept: */*\n" +
+                "\n";
+        InputStream in = new ByteArrayInputStream(requestMessage.getBytes());
+
+        // when
+        HttpRequestParser parser = new HttpRequestParser();
+        HttpRequest request = parser.parseRequest(in);
+
+        // then
+        assertAll(
+                () -> assertThat(request.getPath()).isEqualTo("/"),
+                () -> assertThat(request.getParameter("a")).isEqualTo("b"),
+                () -> assertThat(request.getParameter("c")).isEqualTo("d")
+        );
+    }
 }
