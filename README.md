@@ -7,3 +7,16 @@
 
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 온라인 코드 리뷰 과정](https://github.com/next-step/nextstep-docs/tree/master/codereview)
+
+# 요구사항
+- [ ] `GET /index.html` 응답하기
+  - [ ] 해당 파일에 접근할 수 있도록 구현
+  - [x] RequestLine 파싱
+  - [x] RequestHeader 읽기 및 파싱
+  - [ ] Request Line에서 path 분리하기
+  - [ ] path에 해당하는 파일 읽기
+- [ ] CSS 지원하기
+- [ ] 쿼리 스트링 파싱
+  - [ ] `http://localhost:8080/user/form.htmlhttp://localhost:8080/user/form.html` 를 통해 회원가입 시도 가능
+- [ ] POST로 회원가입 하기
+- [ ] 회원가입 후 리다이렉트
