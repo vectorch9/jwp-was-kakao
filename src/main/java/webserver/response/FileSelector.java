@@ -2,8 +2,6 @@ package webserver.response;
 
 import java.util.List;
 
-import utils.FileIoUtils;
-
 public class FileSelector {
 
     private final List<String> bases;

@@ -20,8 +20,8 @@ public class HttpRequestParser {
 
         Map<String, String> headers = new HashMap<>();
         String header;
-        while((header = reader.readLine()) != null) {
-            if(header.isEmpty()) {
+        while ((header = reader.readLine()) != null) {
+            if (header.isEmpty()) {
                 break;
             }
             String[] headerTokens = header.split(":", 2);

@@ -1,7 +1,5 @@
 package webserver.response;
 
-import java.util.List;
-
 import utils.FileIoUtils;
 
 public class FileView {

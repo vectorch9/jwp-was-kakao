@@ -19,7 +19,7 @@ public class FileViewTest {
         assertAll(
                 () -> assertThat(response.getStatus()).isEqualTo(HttpStatus.OK),
                 () -> assertThat(response.getHeaders())
-                    .containsEntry("Content-Type", "text/html;charset=utf-8")
+                        .containsEntry("Content-Type", "text/html;charset=utf-8")
         );
     }
 

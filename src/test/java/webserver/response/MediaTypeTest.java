@@ -9,6 +9,7 @@ public class MediaTypeTest {
 
     @Test
     void 확장자를_MediaType으로_변환한다() {
+        // given & when & then
         assertAll(
                 () -> assertThat(MediaType.fromExtension("html")).isEqualTo(MediaType.HTML),
                 () -> assertThat(MediaType.fromExtension("css")).isEqualTo(MediaType.CSS),

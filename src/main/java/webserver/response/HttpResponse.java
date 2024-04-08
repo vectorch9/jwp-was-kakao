@@ -10,7 +10,7 @@ public class HttpResponse {
     private final Map<String, String> headers;
     private byte[] content;
 
-    public HttpResponse(){
+    public HttpResponse() {
         this.headers = new HashMap<>();
     }
 
