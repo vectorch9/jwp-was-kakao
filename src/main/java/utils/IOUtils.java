@@ -14,7 +14,10 @@ public class IOUtils {
      */
     public static String readData(BufferedReader br, int contentLength) throws IOException {
         char[] body = new char[contentLength];
-        br.read(body, 0, contentLength);
+        int readLength = br.read(body, 0, contentLength);
+        if (readLength != contentLength) {
+            throw new RuntimeException("Content-Length와 body의 길이가 다릅니다.");
+        }
         return String.copyValueOf(body);
     }
 }

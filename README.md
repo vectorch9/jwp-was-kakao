@@ -13,8 +13,10 @@
   - [ ] 해당 파일에 접근할 수 있도록 구현
   - [x] RequestLine 파싱
   - [x] RequestHeader 읽기 및 파싱
-  - [ ] Request Line에서 path 분리하기
-  - [ ] path에 해당하는 파일 읽기
+  - [x] Request Line에서 path 분리하기
+  - [x] path에 해당하는 파일 읽기
+  - [x] body가 있는 경우 content length는 필수라고 가정
+  - [ ] body 읽고 파싱
 - [ ] CSS 지원하기
 - [ ] 쿼리 스트링 파싱
   - [ ] `http://localhost:8080/user/form.htmlhttp://localhost:8080/user/form.html` 를 통해 회원가입 시도 가능

@@ -1,14 +1,16 @@
 package webserver.request;
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.apache.catalina.util.IOTools;
+
+import utils.IOUtils;
 
 public class HttpRequestParser {
 
@@ -25,7 +27,17 @@ public class HttpRequestParser {
 
         Map<String, String> headers = parseHeaders(reader);
 
-        return new HttpRequest(method, path, version, headers, parseQueryParameters(pathToken));
+        byte[] bodyContent = null;
+        if (requireReadBody(headers)) {
+            int contentLength = Integer.parseInt(headers.get("Content-Length"));
+            bodyContent = IOUtils.readData(reader, contentLength).getBytes();
+        }
+
+        return new HttpRequest(method, path, version, headers, parseQueryParameters(pathToken), bodyContent);
+    }
+
+    private static boolean requireReadBody(Map<String, String> headers) {
+        return headers.containsKey("Content-Length");
     }
 
     private Map<String, String> parseHeaders(BufferedReader reader) throws IOException {

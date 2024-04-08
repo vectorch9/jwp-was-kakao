@@ -72,4 +72,22 @@ public class HttpRequestParserTest {
                 () -> assertThat(request.getParameter("c")).isEqualTo("d")
         );
     }
+
+    @Test
+    void 바디를_파싱한다() throws IOException {
+        // given
+        String body = "body\nbodyb";
+        String requestMessage = "POST /?a=b&c=d HTTP/1.1\n" +
+                "Content-Length: " + body.getBytes().length + "\n" +
+                "\n"
+                + body;
+        InputStream in = new ByteArrayInputStream(requestMessage.getBytes());
+
+        // when
+        HttpRequestParser parser = new HttpRequestParser();
+        HttpRequest request = parser.parseRequest(in);
+
+        // then
+        assertThat(request.getBodyContent()).isEqualTo(body.getBytes());
+    }
 }
