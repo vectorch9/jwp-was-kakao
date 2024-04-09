@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 
 public class HttpResponseRenderer {
 
+    // TODO: 리펙토링
     public void render(DataOutputStream dos, HttpResponse response) throws IOException {
         HttpStatus status = response.getStatus();
         dos.writeBytes(String.format("HTTP/1.1 %d %s \r\n", status.getCode(), status.getReasonPhrase()));

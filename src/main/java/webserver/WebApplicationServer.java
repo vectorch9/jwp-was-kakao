@@ -41,6 +41,7 @@ public class WebApplicationServer {
         }
     }
 
+    // TODO: 리펙토링
     private static HandlerComposite routeHandler() {
         HandlerComposite composite = new HandlerComposite();
         UserController userController = new UserController();

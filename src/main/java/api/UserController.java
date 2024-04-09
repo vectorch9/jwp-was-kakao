@@ -13,6 +13,7 @@ import webserver.response.HttpStatus;
 
 public class UserController {
 
+    // TODO: 리펙토링
     public HttpResponse createUser(HttpRequest request) {
         String body = new String(request.getBodyContent(), StandardCharsets.UTF_8);
         Map<String, String> params = Arrays.stream(body.split("&"))

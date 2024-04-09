@@ -11,6 +11,7 @@ public class HttpRequest {
     private final Map<String, String> parameters;
     private final byte[] bodyContent;
 
+    // TODO: 리펙토링
     public HttpRequest(HttpMethod method, String path, String version, Map<String, String> headers, Map<String, String> parameters, byte[] bodyContent) {
         this.method = method;
         this.path = path;
