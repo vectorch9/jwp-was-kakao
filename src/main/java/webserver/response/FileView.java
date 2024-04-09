@@ -1,5 +1,7 @@
 package webserver.response;
 
+import java.util.Optional;
+
 import utils.FileIoUtils;
 
 public class FileView {
@@ -15,18 +17,12 @@ public class FileView {
         this("");
     }
 
-    public HttpResponse readFromPath(String path) {
-        HttpResponse response = new HttpResponse();
-
+    public Optional<byte[]> readFromPath(String path) {
         try {
-            byte[] fileContents = FileIoUtils.loadFileFromClasspath(basePath + path);
-            response.responseStatus(HttpStatus.OK);
-            response.contentType(extractMediaType(path));
-            response.responseBody(fileContents);
-        } catch (Exception e) {
-            response.responseStatus(HttpStatus.NOT_FOUND);
+            return Optional.of(FileIoUtils.loadFileFromClasspath(basePath + path));
+        } catch (Exception ignored) {
         }
-        return response;
+        return Optional.empty();
     }
 
     private MediaType extractMediaType(String path) {

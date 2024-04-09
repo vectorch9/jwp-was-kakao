@@ -12,7 +12,7 @@ public class URIMapping {
 
     public URIMapping() {
         this.handlers = new HashMap<>();
-        this.defaultHandler = new StaticResourceHandler();
+        this.defaultHandler = new StaticResourceHandler("./templates", "./static");
     }
 
     public void addHandler(String uri, Handler handler) {

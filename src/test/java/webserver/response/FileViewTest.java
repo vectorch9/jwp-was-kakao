@@ -3,35 +3,38 @@ package webserver.response;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
+
+import utils.FileIoUtils;
 
 public class FileViewTest {
 
     @Test
-    void HttpResponse를_생성한다() {
+    void HttpResponse를_생성한다() throws IOException, URISyntaxException {
         // given
         FileView view = new FileView();
+        byte[] expected = FileIoUtils.loadFileFromClasspath("./test.html");
 
         // when
-        HttpResponse response = view.readFromPath("./test.html");
+        Optional<byte[]> actual = view.readFromPath("./test.html");
 
         // then
-        assertAll(
-                () -> assertThat(response.getStatus()).isEqualTo(HttpStatus.OK),
-                () -> assertThat(response.getHeaders())
-                        .containsEntry("Content-Type", "text/html;charset=utf-8")
-        );
+        assertThat(actual).hasValue(expected);
     }
 
     @Test
-    void 파일이_존재하지_않으면_404_응답을_반환한다() {
+    void 파일이_존재하지_않으면_empty를_반환한다() {
         // given
         FileView view = new FileView();
 
         // when
-        HttpResponse response = view.readFromPath("./invalid.html");
+        Optional<byte[]> actual = view.readFromPath("./invalid.html");
 
         // then
-        assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND);
+        assertThat(actual).isEmpty();
     }
 }
