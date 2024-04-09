@@ -34,6 +34,4 @@ public class FileViewTest {
         // then
         assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND);
     }
-
-
 }
