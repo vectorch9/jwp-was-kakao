@@ -43,8 +43,4 @@ public class HttpResponse {
     public byte[] getContent() {
         return content;
     }
-
-    public boolean isNotFound() {
-        return status == HttpStatus.NOT_FOUND;
-    }
 }

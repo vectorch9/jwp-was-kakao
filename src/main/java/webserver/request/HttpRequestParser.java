@@ -8,12 +8,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.catalina.util.IOTools;
-
 import utils.IOUtils;
 
 public class HttpRequestParser {
 
+    // TODO: 리펙토링
     public HttpRequest parseRequest(InputStream in) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
         String requestLine = reader.readLine();

@@ -5,12 +5,11 @@ import java.io.IOException;
 
 public class IOUtils {
     /**
-     * @param BufferedReader는
+     * @param br 는
      *            Request Body를 시작하는 시점이어야
-     * @param contentLength는
+     * @param contentLength 는
      *            Request Header의 Content-Length 값이다.
-     * @return
-     * @throws IOException
+     * @return Request Body를 String으로 변환하여 반환한다.
      */
     public static String readData(BufferedReader br, int contentLength) throws IOException {
         char[] body = new char[contentLength];
