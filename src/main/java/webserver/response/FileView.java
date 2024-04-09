@@ -19,7 +19,7 @@ public class FileView {
         HttpResponse response = new HttpResponse();
 
         try {
-            byte[] fileContents = FileIoUtils.loadFileFromClasspath(path);
+            byte[] fileContents = FileIoUtils.loadFileFromClasspath(basePath + path);
             response.responseStatus(HttpStatus.OK);
             response.contentType(extractMediaType(path));
             response.responseBody(fileContents);

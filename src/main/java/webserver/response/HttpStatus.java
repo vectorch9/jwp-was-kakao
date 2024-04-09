@@ -3,6 +3,7 @@ package webserver.response;
 public enum HttpStatus {
     CONTINUE(100, "Continue"),
     OK(200, "OK"),
+    FOUND(302, "Found"),
     NOT_FOUND(404, "Not Found");
 
     private final int code;
