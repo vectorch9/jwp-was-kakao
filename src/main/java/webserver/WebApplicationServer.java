@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import api.UserController;
 import webserver.handler.Handler;
 import webserver.handler.HandlerComposite;
 import webserver.handler.StaticResourceHandler;
@@ -44,7 +45,8 @@ public class WebApplicationServer {
 
     private static HandlerComposite routeHandler() {
         HandlerComposite composite = new HandlerComposite();
-
+        UserController userController = new UserController();
+        composite.addHandler(HttpMethod.POST, "/user/create", userController::createUser);
         return composite;
     }
 }
