@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class HttpResponseRender {
+public class HttpResponseRenderer {
 
     public void render(DataOutputStream dos, HttpResponse response) throws IOException {
         HttpStatus status = response.getStatus();
