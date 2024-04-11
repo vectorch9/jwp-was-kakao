@@ -9,7 +9,7 @@ import java.io.InputStream;
 
 import org.junit.jupiter.api.Test;
 
-public class HttpRequestParserTest {
+public class HttpRequestConverterTest {
 
     @Test
     void RequestLine을_파싱한다() throws IOException {
@@ -18,7 +18,7 @@ public class HttpRequestParserTest {
         InputStream in = new ByteArrayInputStream(requestMessage.getBytes());
 
         // when
-        HttpRequestParser parser = new HttpRequestParser();
+        HttpRequestConverter parser = new HttpRequestConverter();
         HttpRequest request = parser.parseRequest(in);
 
         // then
@@ -40,7 +40,7 @@ public class HttpRequestParserTest {
         InputStream in = new ByteArrayInputStream(requestMessage.getBytes());
 
         // when
-        HttpRequestParser parser = new HttpRequestParser();
+        HttpRequestConverter parser = new HttpRequestConverter();
         HttpRequest request = parser.parseRequest(in);
 
         // then
@@ -62,7 +62,7 @@ public class HttpRequestParserTest {
         InputStream in = new ByteArrayInputStream(requestMessage.getBytes());
 
         // when
-        HttpRequestParser parser = new HttpRequestParser();
+        HttpRequestConverter parser = new HttpRequestConverter();
         HttpRequest request = parser.parseRequest(in);
 
         // then
@@ -84,7 +84,7 @@ public class HttpRequestParserTest {
         InputStream in = new ByteArrayInputStream(requestMessage.getBytes());
 
         // when
-        HttpRequestParser parser = new HttpRequestParser();
+        HttpRequestConverter parser = new HttpRequestConverter();
         HttpRequest request = parser.parseRequest(in);
 
         // then

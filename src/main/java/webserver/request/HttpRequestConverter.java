@@ -10,7 +10,7 @@ import java.util.Map;
 
 import utils.IOUtils;
 
-public class HttpRequestParser {
+public class HttpRequestConverter {
 
     // TODO: 리펙토링
     public HttpRequest parseRequest(InputStream in) throws IOException {

@@ -10,7 +10,7 @@ import api.UserController;
 import webserver.handler.Handler;
 import webserver.handler.HandlerComposite;
 import webserver.request.HttpMethod;
-import webserver.request.HttpRequestParser;
+import webserver.request.HttpRequestConverter;
 import webserver.response.HttpResponseRenderer;
 
 public class WebApplicationServer {
@@ -25,7 +25,7 @@ public class WebApplicationServer {
             port = Integer.parseInt(args[0]);
         }
         Handler handler = routeHandler();
-        HttpRequestParser parser = new HttpRequestParser();
+        HttpRequestConverter parser = new HttpRequestConverter();
         HttpResponseRenderer renderer = new HttpResponseRenderer();
 
         // 서버소켓을 생성한다. 웹서버는 기본적으로 8080번 포트를 사용한다.

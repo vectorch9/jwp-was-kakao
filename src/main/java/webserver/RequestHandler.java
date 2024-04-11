@@ -11,19 +11,19 @@ import org.slf4j.LoggerFactory;
 
 import webserver.handler.Handler;
 import webserver.request.HttpRequest;
-import webserver.request.HttpRequestParser;
+import webserver.request.HttpRequestConverter;
 import webserver.response.HttpResponse;
 import webserver.response.HttpResponseRenderer;
 
 public class RequestHandler implements Runnable {
     private static final Logger logger = LoggerFactory.getLogger(RequestHandler.class);
 
-    private final HttpRequestParser parser;
+    private final HttpRequestConverter parser;
     private final HttpResponseRenderer renderer;
     private final Socket connection;
     private final Handler handler;
 
-    public RequestHandler(HttpRequestParser parser, HttpResponseRenderer renderer, Socket connectionSocket, Handler handler) {
+    public RequestHandler(HttpRequestConverter parser, HttpResponseRenderer renderer, Socket connectionSocket, Handler handler) {
         this.parser = parser;
         this.renderer = renderer;
         this.connection = connectionSocket;
