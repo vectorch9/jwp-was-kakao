@@ -1,4 +1,4 @@
-package webserver.request;
+package webserver.handler;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -11,6 +11,9 @@ import java.io.InputStream;
 import org.junit.jupiter.api.Test;
 
 import utils.IOUtils;
+import webserver.request.HttpMethod;
+import webserver.request.HttpRequest;
+import webserver.request.HttpVersion;
 
 public class HttpRequestConverterTest {
 

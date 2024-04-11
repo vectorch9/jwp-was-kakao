@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import webserver.handler.Handler;
 import webserver.request.HttpRequest;
-import webserver.request.HttpRequestConverter;
+import webserver.handler.HttpRequestConverter;
 import webserver.response.HttpResponse;
 import webserver.response.HttpResponseRenderer;
 
