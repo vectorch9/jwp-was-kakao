@@ -1,18 +1,18 @@
 package webserver.request;
 
-import java.util.Map;
+import java.io.BufferedReader;
+import java.util.List;
 
 public class HttpRequest {
 
     private final RequestLine requestLine;
-    private final Map<String, String> headers;
-    private final byte[] bodyContent;
+    private final HttpHeaders headers;
+    private final BufferedReader reader;
 
-    // TODO: 리펙토링
-    public HttpRequest(String requestLine, Map<String, String> headers, byte[] bodyContent) {
+    public HttpRequest(String requestLine, List<String> headers, BufferedReader reader) {
         this.requestLine = new RequestLine(requestLine);
-        this.headers = headers;
-        this.bodyContent = bodyContent;
+        this.headers = new HttpHeaders(headers);
+        this.reader = reader;
     }
 
     public HttpMethod getMethod() {
@@ -28,14 +28,14 @@ public class HttpRequest {
     }
 
     public String getHeader(String key) {
-        return headers.get(key);
+        return headers.getHeader(key);
     }
 
     public String getParameter(String key) {
         return requestLine.getParameter(key);
     }
 
-    public byte[] getBodyContent() {
-        return bodyContent;
+    public BufferedReader getReader() {
+        return reader;
     }
 }

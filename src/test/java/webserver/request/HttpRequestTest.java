@@ -3,6 +3,8 @@ package webserver.request;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 public class HttpRequestTest {
@@ -56,5 +58,22 @@ public class HttpRequestTest {
 
         // then
         assertThat(request.getVersion()).isEqualTo(HttpVersion.HTTP11);
+    }
+
+    @Test
+    void 헤더를_읽는다() {
+        // given
+        String requestLine = "GET /index.html?userId=vector&password=1234 HTTP/1.1";
+        List<String> headerLines = List.of("Host: localhost:8080", "Connection: keep-alive", "Accept: */*");
+
+        // when
+        HttpRequest request = new HttpRequest(requestLine, headerLines, null);
+
+        // when & then
+        assertAll(
+                () -> assertThat(request.getHeader("Host")).isEqualTo("localhost:8080"),
+                () -> assertThat(request.getHeader("Connection")).isEqualTo("keep-alive"),
+                () -> assertThat(request.getHeader("Accept")).isEqualTo("*/*")
+        );
     }
 }

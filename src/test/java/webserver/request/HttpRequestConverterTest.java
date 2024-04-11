@@ -3,11 +3,14 @@ package webserver.request;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
 import org.junit.jupiter.api.Test;
+
+import utils.IOUtils;
 
 public class HttpRequestConverterTest {
 
@@ -74,20 +77,22 @@ public class HttpRequestConverterTest {
     }
 
     @Test
-    void 바디를_파싱한다() throws IOException {
+    void 리더를_주입한다() throws IOException {
         // given
-        String body = "body\nbodyb";
+        String expected = "body\nbodyb";
         String requestMessage = "POST /?a=b&c=d HTTP/1.1\n" +
-                "Content-Length: " + body.getBytes().length + "\n" +
+                "Content-Length: " + expected.getBytes().length + "\n" +
                 "\n"
-                + body;
+                + expected;
         InputStream in = new ByteArrayInputStream(requestMessage.getBytes());
 
         // when
         HttpRequestConverter converter = new HttpRequestConverter();
         HttpRequest request = converter.parseRequest(in);
+        BufferedReader reader = request.getReader();
+        String actual = IOUtils.readData(reader, Integer.parseInt(request.getHeader("Content-Length")));
 
         // then
-        assertThat(request.getBodyContent()).isEqualTo(body.getBytes());
+        assertThat(actual).isEqualTo(expected);
     }
 }

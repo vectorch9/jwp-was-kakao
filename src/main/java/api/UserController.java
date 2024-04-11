@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import db.DataBase;
 import model.User;
+import utils.IOUtils;
 import webserver.request.HttpRequest;
 import webserver.response.HttpResponse;
 import webserver.response.HttpStatus;
@@ -15,7 +16,12 @@ public class UserController {
 
     // TODO: 리펙토링
     public HttpResponse createUser(HttpRequest request) {
-        String body = new String(request.getBodyContent(), StandardCharsets.UTF_8);
+        // TODO content-Length에 대한 검증 추가
+        int contentLength = Integer.parseInt(request.getHeader("Content-Length"));
+        byte[] bodyContent = IOUtils.readData(request.getReader(), contentLength).getBytes();
+
+
+        String body = new String(bodyContent, StandardCharsets.UTF_8);
         Map<String, String> params = Arrays.stream(body.split("&"))
                                            .map(elem -> elem.split("="))
                                            .collect(Collectors.toMap(tokens -> tokens[0], tokens -> tokens[1]));
