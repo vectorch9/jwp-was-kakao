@@ -18,14 +18,14 @@ public class HttpRequestConverterTest {
         InputStream in = new ByteArrayInputStream(requestMessage.getBytes());
 
         // when
-        HttpRequestConverter parser = new HttpRequestConverter();
-        HttpRequest request = parser.parseRequest(in);
+        HttpRequestConverter converter = new HttpRequestConverter();
+        HttpRequest request = converter.parseRequest(in);
 
         // then
         assertAll(
                 () -> assertThat(request.getMethod()).isEqualTo(HttpMethod.GET),
                 () -> assertThat(request.getPath()).isEqualTo("/"),
-                () -> assertThat(request.getVersion()).isEqualTo("HTTP/1.1")
+                () -> assertThat(request.getVersion()).isEqualTo(HttpVersion.HTTP11)
         );
     }
 
@@ -40,8 +40,8 @@ public class HttpRequestConverterTest {
         InputStream in = new ByteArrayInputStream(requestMessage.getBytes());
 
         // when
-        HttpRequestConverter parser = new HttpRequestConverter();
-        HttpRequest request = parser.parseRequest(in);
+        HttpRequestConverter converter = new HttpRequestConverter();
+        HttpRequest request = converter.parseRequest(in);
 
         // then
         assertAll(
@@ -62,8 +62,8 @@ public class HttpRequestConverterTest {
         InputStream in = new ByteArrayInputStream(requestMessage.getBytes());
 
         // when
-        HttpRequestConverter parser = new HttpRequestConverter();
-        HttpRequest request = parser.parseRequest(in);
+        HttpRequestConverter converter = new HttpRequestConverter();
+        HttpRequest request = converter.parseRequest(in);
 
         // then
         assertAll(
@@ -84,8 +84,8 @@ public class HttpRequestConverterTest {
         InputStream in = new ByteArrayInputStream(requestMessage.getBytes());
 
         // when
-        HttpRequestConverter parser = new HttpRequestConverter();
-        HttpRequest request = parser.parseRequest(in);
+        HttpRequestConverter converter = new HttpRequestConverter();
+        HttpRequest request = converter.parseRequest(in);
 
         // then
         assertThat(request.getBodyContent()).isEqualTo(body.getBytes());

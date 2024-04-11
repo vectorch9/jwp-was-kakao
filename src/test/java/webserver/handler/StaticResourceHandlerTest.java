@@ -9,7 +9,6 @@ import java.net.URISyntaxException;
 import org.junit.jupiter.api.Test;
 
 import utils.FileIoUtils;
-import webserver.request.HttpMethod;
 import webserver.request.HttpRequest;
 import webserver.response.HttpResponse;
 import webserver.response.HttpStatus;
@@ -20,8 +19,7 @@ public class StaticResourceHandlerTest {
     void static_파일을_응답한다() throws IOException, URISyntaxException {
         // given
         StaticResourceHandler handler = new StaticResourceHandler("./templates", "./static");
-        HttpRequest request = new HttpRequest(HttpMethod.GET, "/static-test.css", "HTTP/1.1",
-                                              null, null, null);
+        HttpRequest request = new HttpRequest("GET /static-test.css HTTP/1.1", null, null);
         byte[] expected = FileIoUtils.loadFileFromClasspath("./static/static-test.css");
 
         // when
@@ -38,8 +36,7 @@ public class StaticResourceHandlerTest {
     void templates_파일을_응답한다() throws IOException, URISyntaxException {
         // given
         StaticResourceHandler handler = new StaticResourceHandler("./templates", "./static");
-        HttpRequest request = new HttpRequest(HttpMethod.GET, "/templates-test.css", "HTTP/1.1",
-                                              null, null, null);
+        HttpRequest request = new HttpRequest("GET /templates-test.css HTTP/1.1", null, null);
         byte[] expected = FileIoUtils.loadFileFromClasspath("./templates/templates-test.css");
 
         // when
@@ -56,8 +53,7 @@ public class StaticResourceHandlerTest {
     void 둘다_있으면_templates_파일을_응답한다() throws IOException, URISyntaxException {
         // given
         StaticResourceHandler handler = new StaticResourceHandler("./templates", "./static");
-        HttpRequest request = new HttpRequest(HttpMethod.GET, "/test.html", "HTTP/1.1",
-                                              null, null, null);
+        HttpRequest request = new HttpRequest("GET /test.html HTTP/1.1", null, null);
         byte[] expected = FileIoUtils.loadFileFromClasspath("./templates/test.html");
 
         // when
@@ -74,8 +70,7 @@ public class StaticResourceHandlerTest {
     void 파일이_존재하지_않으면_404_응답을_반환한다() {
         // given
         StaticResourceHandler handler = new StaticResourceHandler("./templates", "./static");
-        HttpRequest request = new HttpRequest(HttpMethod.GET, "/invalid.html", "HTTP/1.1",
-                                              null, null, null);
+        HttpRequest request = new HttpRequest("GET /invalid.html HTTP/1.1", null, null);
 
         // when
         HttpResponse response = handler.handle(request);
