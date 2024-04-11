@@ -6,6 +6,7 @@ import java.net.Socket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import api.RootController;
 import api.UserController;
 import webserver.handler.Handler;
 import webserver.handler.HandlerComposite;
@@ -45,7 +46,9 @@ public class WebApplicationServer {
     private static HandlerComposite routeHandler() {
         HandlerComposite composite = new HandlerComposite();
         UserController userController = new UserController();
+        RootController rootController = new RootController();
         composite.addHandler(HttpMethod.POST, "/user/create", userController::createUser);
+        composite.addHandler(HttpMethod.GET, "/", rootController::redirect);
         return composite;
     }
 }

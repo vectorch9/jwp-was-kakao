@@ -22,7 +22,7 @@
   - [x] `http://localhost:8080/user/form.htmlhttp://localhost:8080/user/form.html` 를 통해 회원가입 시도 가능
 - [x] POST로 회원가입 하기
 - [x] 회원가입 후 리다이렉트
-- [ ] root(/)로 요청 시 index.html로 리다이렉트 시키기
+- [x] root(/)로 요청 시 index.html로 리다이렉트 시키기
 
 ## URIMatcher
 - /static/** -> /static/, /static/a/b, /static/a 
