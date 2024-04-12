@@ -10,8 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import webserver.handler.Handler;
-import webserver.request.HttpRequest;
 import webserver.handler.HttpRequestConverter;
+import webserver.request.HttpRequest;
 import webserver.response.HttpResponse;
 import webserver.response.HttpResponseRenderer;
 
@@ -34,9 +34,12 @@ public class RequestHandler implements Runnable {
         logger.debug("New Client Connect! Connected IP : {}, Port : {}", connection.getInetAddress(),
                      connection.getPort());
 
-        try (InputStream in = connection.getInputStream(); OutputStream out = connection.getOutputStream()) {
+        try (
+                InputStream in = connection.getInputStream();
+                OutputStream out = connection.getOutputStream();
+                DataOutputStream dos = new DataOutputStream(out)
+        ) {
             HttpRequest request = parser.parseRequest(in);
-            DataOutputStream dos = new DataOutputStream(out);
             HttpResponse response = handler.handle(request);
             renderer.render(dos, response);
         } catch (IOException e) {

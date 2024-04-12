@@ -10,8 +10,8 @@ import api.RootController;
 import api.UserController;
 import webserver.handler.Handler;
 import webserver.handler.HandlerComposite;
-import webserver.request.HttpMethod;
 import webserver.handler.HttpRequestConverter;
+import webserver.request.HttpMethod;
 import webserver.response.HttpResponseRenderer;
 
 public class WebApplicationServer {
@@ -25,7 +25,8 @@ public class WebApplicationServer {
         } else {
             port = Integer.parseInt(args[0]);
         }
-        Handler handler = routeHandler();
+
+        Handler handler = handlerComposite();
         HttpRequestConverter parser = new HttpRequestConverter();
         HttpResponseRenderer renderer = new HttpResponseRenderer();
 
@@ -42,8 +43,7 @@ public class WebApplicationServer {
         }
     }
 
-    // TODO: 리펙토링
-    private static HandlerComposite routeHandler() {
+    private static HandlerComposite handlerComposite() {
         HandlerComposite composite = new HandlerComposite();
         UserController userController = new UserController();
         RootController rootController = new RootController();

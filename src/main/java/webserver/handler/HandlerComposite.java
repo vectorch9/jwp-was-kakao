@@ -29,7 +29,7 @@ public class HandlerComposite implements Handler {
     }
 
     @Override
-    public HttpResponse handle(HttpRequest request) throws IOException {
+    public HttpResponse handle(HttpRequest request) {
         URIMapping handler = findURIMapping(request.getMethod());
         return handler.findHandler(request.getPath()).handle(request);
     }

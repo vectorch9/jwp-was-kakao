@@ -20,7 +20,6 @@ public class UserController {
         int contentLength = Integer.parseInt(request.getHeader("Content-Length"));
         byte[] bodyContent = IOUtils.readData(request.getReader(), contentLength).getBytes();
 
-
         String body = new String(bodyContent, StandardCharsets.UTF_8);
         Map<String, String> params = Arrays.stream(body.split("&"))
                                            .map(elem -> elem.split("="))
