@@ -6,8 +6,8 @@ import java.net.Socket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import api.RootController;
-import api.UserController;
+import api.RootHandler;
+import api.CreateUserHandler;
 import webserver.handler.Handler;
 import webserver.handler.HandlerComposite;
 import webserver.handler.HttpRequestConverter;
@@ -48,8 +48,8 @@ public class WebApplicationServer {
         HandlerComposite composite = new HandlerComposite();
         HttpRequestBodyParser parser = new HttpRequestBodyParser();
 
-        composite.addHandler(HttpMethod.POST, "/user/create", new UserController(parser));
-        composite.addHandler(HttpMethod.GET, "/", new RootController());
+        composite.addHandler(HttpMethod.POST, "/user/create", new CreateUserHandler(parser));
+        composite.addHandler(HttpMethod.GET, "/", new RootHandler());
         return composite;
     }
 }

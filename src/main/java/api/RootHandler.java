@@ -4,7 +4,7 @@ import webserver.handler.Handler;
 import webserver.request.HttpRequest;
 import webserver.response.HttpResponse;
 
-public class RootController implements Handler {
+public class RootHandler implements Handler {
 
     @Override
     public HttpResponse handle(HttpRequest request) {

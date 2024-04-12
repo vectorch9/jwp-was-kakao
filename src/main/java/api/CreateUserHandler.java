@@ -9,11 +9,11 @@ import webserver.parser.HttpRequestBodyParser;
 import webserver.request.HttpRequest;
 import webserver.response.HttpResponse;
 
-public class UserController implements Handler {
+public class CreateUserHandler implements Handler {
 
     private final HttpRequestBodyParser parser;
 
-    public UserController(HttpRequestBodyParser parser) {
+    public CreateUserHandler(HttpRequestBodyParser parser) {
         this.parser = parser;
     }
 
