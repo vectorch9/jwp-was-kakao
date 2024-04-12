@@ -11,6 +11,7 @@ import api.UserController;
 import webserver.handler.Handler;
 import webserver.handler.HandlerComposite;
 import webserver.handler.HttpRequestConverter;
+import webserver.parser.HttpRequestBodyParser;
 import webserver.request.HttpMethod;
 import webserver.response.HttpResponseRenderer;
 
@@ -45,7 +46,9 @@ public class WebApplicationServer {
 
     private static HandlerComposite handlerComposite() {
         HandlerComposite composite = new HandlerComposite();
-        composite.addHandler(HttpMethod.POST, "/user/create", new UserController());
+        HttpRequestBodyParser parser = new HttpRequestBodyParser();
+
+        composite.addHandler(HttpMethod.POST, "/user/create", new UserController(parser));
         composite.addHandler(HttpMethod.GET, "/", new RootController());
         return composite;
     }
