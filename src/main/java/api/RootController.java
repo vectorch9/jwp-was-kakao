@@ -1,15 +1,13 @@
 package api;
 
+import webserver.handler.Handler;
 import webserver.request.HttpRequest;
 import webserver.response.HttpResponse;
-import webserver.response.HttpStatus;
 
-public class RootController {
+public class RootController implements Handler {
 
-    public HttpResponse redirect(HttpRequest request) {
-        HttpResponse response = new HttpResponse();
-        response.responseStatus(HttpStatus.FOUND);
-        response.addHeader("Location", "/index.html");
-        return response;
+    @Override
+    public HttpResponse handle(HttpRequest request) {
+        return HttpResponse.redirect("index.html");
     }
 }

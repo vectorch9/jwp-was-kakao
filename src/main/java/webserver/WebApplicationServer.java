@@ -45,10 +45,8 @@ public class WebApplicationServer {
 
     private static HandlerComposite handlerComposite() {
         HandlerComposite composite = new HandlerComposite();
-        UserController userController = new UserController();
-        RootController rootController = new RootController();
-        composite.addHandler(HttpMethod.POST, "/user/create", userController::createUser);
-        composite.addHandler(HttpMethod.GET, "/", rootController::redirect);
+        composite.addHandler(HttpMethod.POST, "/user/create", new UserController());
+        composite.addHandler(HttpMethod.GET, "/", new RootController());
         return composite;
     }
 }

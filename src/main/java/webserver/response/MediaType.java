@@ -7,6 +7,8 @@ public enum MediaType {
     JSON("application/json", "json"),
     OCTET_STREAM("application/octet-stream", "");
 
+    public static final String EXTENSION_DELIMITER = ".";
+    public static final String CHARSET_UTF_8 = ";charset=utf-8";
     private final String mediaType;
     private final String extension;
 
@@ -25,8 +27,17 @@ public enum MediaType {
         return OCTET_STREAM;
     }
 
+    public static MediaType fromPath(String path) {
+        int index = path.lastIndexOf(EXTENSION_DELIMITER);
+        if (index == -1) {
+            return MediaType.OCTET_STREAM;
+        }
+        String extension = path.substring(index + 1).toLowerCase();
+        return MediaType.fromExtension(extension);
+    }
+
     public String getMediaType() {
-        return mediaType + ";charset=utf-8";
+        return mediaType + CHARSET_UTF_8;
     }
 
 }

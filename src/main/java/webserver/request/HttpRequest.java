@@ -38,4 +38,18 @@ public class HttpRequest {
     public BufferedReader getReader() {
         return reader;
     }
+
+    public int getContentLength() {
+        if (headers.getHeader(HttpHeaderKey.CONTENT_LENGTH.key) == null) {
+            return 0;
+        }
+        return Integer.parseInt(headers.getHeader(HttpHeaderKey.CONTENT_LENGTH.key));
+    }
+
+    public boolean hasBody() {
+        if (getMethod() == HttpMethod.GET) {
+            return false;
+        }
+        return getContentLength() != 0;
+    }
 }

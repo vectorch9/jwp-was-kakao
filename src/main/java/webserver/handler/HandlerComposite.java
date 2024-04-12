@@ -1,6 +1,5 @@
 package webserver.handler;
 
-import java.io.IOException;
 import java.util.EnumMap;
 import java.util.Map;
 
