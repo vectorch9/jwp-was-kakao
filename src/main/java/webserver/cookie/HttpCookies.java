@@ -20,7 +20,7 @@ public class HttpCookies {
             return;
         }
 
-        this.cookies = Arrays.stream(cookieString.split(","))
+        this.cookies = Arrays.stream(cookieString.split(";"))
                              .map(String::trim)
                              .map(cookie -> cookie.split("=", 2))
                              .collect(Collectors.toMap(token -> token[0], token -> token[1]));

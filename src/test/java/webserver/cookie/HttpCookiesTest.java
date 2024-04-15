@@ -5,12 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.jupiter.api.Test;
 
-public class HttpCookieTest {
+public class HttpCookiesTest {
 
     @Test
     void 쿠키를_파싱한다() {
         // given
-        String cookie = "JSESSIONID=1234, logined=true";
+        String cookie = "JSESSIONID=1234; logined=true";
 
         // when
         HttpCookies cookies = new HttpCookies(cookie);
