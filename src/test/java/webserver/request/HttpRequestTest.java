@@ -69,11 +69,28 @@ public class HttpRequestTest {
         // when
         HttpRequest request = new HttpRequest(requestLine, headerLines, null);
 
-        // when & then
+        // then
         assertAll(
                 () -> assertThat(request.getHeader("Host")).isEqualTo("localhost:8080"),
                 () -> assertThat(request.getHeader("Connection")).isEqualTo("keep-alive"),
                 () -> assertThat(request.getHeader("Accept")).isEqualTo("*/*")
+        );
+    }
+
+    @Test
+    void 쿠키를_읽는다() {
+        // given
+        String requestLine = "GET /index.html?userId=vector&password=1234 HTTP/1.1";
+        List<String> headerLines = List.of("Host: localhost:8080", "Connection: keep-alive", "Accept: */*",
+                                           "Cookie: JESSIONID=1234, logined=true");
+
+        // when
+        HttpRequest request = new HttpRequest(requestLine, headerLines, null);
+
+        // then
+        assertAll(
+                () -> assertThat(request.getCookie("JESSIONID")).isEqualTo("1234"),
+                () -> assertThat(request.getCookie("logined")).isEqualTo("true")
         );
     }
 }

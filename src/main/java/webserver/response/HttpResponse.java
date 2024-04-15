@@ -8,14 +8,18 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import webserver.cookie.HttpCookies;
+
 public class HttpResponse {
 
     private HttpStatus status;
     private final Map<String, String> headers;
+    private final HttpCookies cookies;
     private byte[] content;
 
     public HttpResponse() {
         this.headers = new HashMap<>();
+        this.cookies = new HttpCookies();
     }
 
     public static HttpResponse ok(MediaType contentType, byte[] content) {
@@ -67,5 +71,9 @@ public class HttpResponse {
 
     public byte[] getContent() {
         return content;
+    }
+
+    public void addCookie(String name, String value) {
+        cookies.addCookie(name, value);
     }
 }

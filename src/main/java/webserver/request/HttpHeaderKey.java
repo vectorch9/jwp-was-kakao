@@ -6,7 +6,8 @@ public enum HttpHeaderKey {
     CONNECTION("Connection"),
     HOST("Host"),
     ACCEPT("Accept"),
-    LOCATION("Location");
+    LOCATION("Location"),
+    COOKIE("Cookie");
 
     public final String key;
 

@@ -3,15 +3,19 @@ package webserver.request;
 import java.io.BufferedReader;
 import java.util.List;
 
+import webserver.cookie.HttpCookies;
+
 public class HttpRequest {
 
     private final RequestLine requestLine;
     private final HttpHeaders headers;
+    private final HttpCookies cookies;
     private final BufferedReader reader;
 
     public HttpRequest(String requestLine, List<String> headers, BufferedReader reader) {
         this.requestLine = new RequestLine(requestLine);
         this.headers = new HttpHeaders(headers);
+        this.cookies = new HttpCookies(this.headers.getHeader(HttpHeaderKey.COOKIE.key));
         this.reader = reader;
     }
 
@@ -51,5 +55,9 @@ public class HttpRequest {
             return false;
         }
         return getContentLength() != 0;
+    }
+
+    public String getCookie(String name) {
+        return cookies.getCookie(name);
     }
 }
