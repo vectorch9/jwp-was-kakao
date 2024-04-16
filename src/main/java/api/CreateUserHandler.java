@@ -21,8 +21,12 @@ public class CreateUserHandler implements Handler {
     public HttpResponse handle(HttpRequest request) {
         Map<String, String> params = parser.parseToMap(request);
 
-        DataBase.addUser(new User(params.get("userId"), params.get("password"), params.get("name"), params.get("email")));
+        DataBase.addUser(parseToUser(params));
 
         return HttpResponse.redirect("/index.html");
+    }
+
+    private User parseToUser(Map<String, String> params) {
+        return new User(params.get("userId"), params.get("password"), params.get("name"), params.get("email"));
     }
 }

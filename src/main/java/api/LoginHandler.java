@@ -1,5 +1,7 @@
 package api;
 
+import static webserver.cookie.HttpCookieNames.JSESSIONID;
+
 import java.util.Map;
 
 import db.DataBase;
@@ -27,8 +29,9 @@ public class LoginHandler implements Handler {
         if (user.matchPassword(params.get("password"))) {
             Session session = SessionStore.createSession();
             session.setAttribute("user", user);
+
             HttpResponse response = HttpResponse.redirect("/index.html");
-            response.addCookie("JSESSIONID", session.getId());
+            response.addCookie(JSESSIONID.name, session.getId());
             return response;
         }
 

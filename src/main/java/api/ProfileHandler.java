@@ -1,5 +1,7 @@
 package api;
 
+import static webserver.cookie.HttpCookieNames.JSESSIONID;
+
 import java.util.Optional;
 
 import model.User;
@@ -13,7 +15,7 @@ public class ProfileHandler extends TemplateHandler {
 
     @Override
     public HttpResponse handle(HttpRequest request) {
-        Optional<Session> sessionOptional = SessionStore.getSession(request.getCookie("JSESSIONID"));
+        Optional<Session> sessionOptional = SessionStore.getSession(request.getCookie(JSESSIONID.name));
 
         if (sessionOptional.isEmpty()) {
             return HttpResponse.redirect("/user/login.html");
