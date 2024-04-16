@@ -6,6 +6,7 @@ import static webserver.request.HttpHeaderKey.LOCATION;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import webserver.cookie.HttpCookies;
@@ -75,5 +76,9 @@ public class HttpResponse {
 
     public void addCookie(String name, String value) {
         cookies.addCookie(name, value);
+    }
+
+    public List<String> getCookies() {
+        return cookies.getCookies();
     }
 }

@@ -2,6 +2,7 @@ package webserver.response;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -29,6 +30,15 @@ public class HttpResponseRenderer {
         Map<String, String> headers = response.getHeaders();
         String headerLines = headers.entrySet().stream()
                                     .map(header -> header.getKey() + HEADER_DELIMITER + header.getValue() + CRLF)
+                                    .collect(Collectors.joining());
+        renderCookie(dos, response);
+        dos.writeBytes(headerLines + CRLF);
+    }
+
+    private void renderCookie(DataOutputStream dos, HttpResponse response) throws IOException {
+        List<String> cookies = response.getCookies();
+        String headerLines = cookies.stream()
+                                    .map(cookie -> "Set-Cookie: " + cookie + "; path=/" + CRLF)
                                     .collect(Collectors.joining());
         dos.writeBytes(headerLines + CRLF);
     }

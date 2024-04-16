@@ -3,6 +3,7 @@ package webserver.cookie;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -32,5 +33,11 @@ public class HttpCookies {
 
     public String getCookie(String name) {
         return cookies.get(name);
+    }
+
+    public List<String> getCookies() {
+        return cookies.entrySet().stream()
+                      .map(entry -> entry.getKey() + "=" + entry.getValue())
+                      .collect(Collectors.toList());
     }
 }
