@@ -15,6 +15,9 @@ public class DataBase {
     }
 
     public static User findUserById(String userId) {
+        if (!users.containsKey(userId)) {
+            throw new IllegalArgumentException("사용자를 찾을 수 없습니다.");
+        }
         return users.get(userId);
     }
 

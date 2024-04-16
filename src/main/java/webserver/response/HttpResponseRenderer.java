@@ -31,16 +31,17 @@ public class HttpResponseRenderer {
         String headerLines = headers.entrySet().stream()
                                     .map(header -> header.getKey() + HEADER_DELIMITER + header.getValue() + CRLF)
                                     .collect(Collectors.joining());
+        dos.writeBytes(headerLines);
         renderCookie(dos, response);
-        dos.writeBytes(headerLines + CRLF);
+        dos.writeBytes(CRLF);
     }
 
     private void renderCookie(DataOutputStream dos, HttpResponse response) throws IOException {
         List<String> cookies = response.getCookies();
-        String headerLines = cookies.stream()
+        String cookieLines = cookies.stream()
                                     .map(cookie -> "Set-Cookie: " + cookie + "; path=/" + CRLF)
                                     .collect(Collectors.joining());
-        dos.writeBytes(headerLines + CRLF);
+        dos.writeBytes(cookieLines);
     }
 
     private void renderBody(DataOutputStream dos, HttpResponse response) throws IOException {
