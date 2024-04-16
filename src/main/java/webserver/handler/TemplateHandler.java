@@ -22,7 +22,7 @@ public abstract class TemplateHandler implements Handler {
         handlebars = new Handlebars(loader);
     }
 
-    public HttpResponse applyTemplate(String path, Object model) {
+    protected HttpResponse applyTemplate(String path, Object model) {
         try {
             byte[] content = handlebars.compile(path)
                                        .apply(model)
@@ -31,5 +31,9 @@ public abstract class TemplateHandler implements Handler {
         } catch (IOException e) {
             return HttpResponse.notFound();
         }
+    }
+
+    protected HttpResponse applyTemplate(String paths) {
+        return applyTemplate(paths, null);
     }
 }

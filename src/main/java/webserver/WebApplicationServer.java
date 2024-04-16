@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import api.ListUserHandler;
+import api.LoginFormHandler;
 import api.LoginHandler;
 import api.ProfileHandler;
 import api.RootHandler;
@@ -59,6 +60,7 @@ public class WebApplicationServer {
         composite.addHandler(HttpMethod.POST, "/user/login", new LoginHandler(parser));
         composite.addHandler(HttpMethod.GET, "/user/list.html", new ListUserHandler());
         composite.addHandler(HttpMethod.GET, "/user/profile.html", new ProfileHandler());
+        composite.addHandler(HttpMethod.GET, "/user/login.html", new LoginFormHandler());
         composite.addHandler(HttpMethod.GET, "/", new RootHandler());
         return composite;
     }
