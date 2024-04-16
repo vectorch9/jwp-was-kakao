@@ -37,7 +37,7 @@ public class WebApplicationServer {
         HttpRequestConverter parser = new HttpRequestConverter();
         HttpResponseRenderer renderer = new HttpResponseRenderer();
 
-        mockData();
+        DataBase.mockData();
 
         // 서버소켓을 생성한다. 웹서버는 기본적으로 8080번 포트를 사용한다.
         try (ServerSocket listenSocket = new ServerSocket(port)) {
@@ -63,10 +63,5 @@ public class WebApplicationServer {
         composite.addHandler(HttpMethod.GET, "/user/login.html", new LoginFormHandler());
         composite.addHandler(HttpMethod.GET, "/", new RootHandler());
         return composite;
-    }
-
-    private static void mockData() {
-        DataBase.addUser(new User("admin", "admin", "관리자", "admin@email.com"));
-        DataBase.addUser(new User("qwe", "qwe", "qwe", "qwe@email.com"));
     }
 }

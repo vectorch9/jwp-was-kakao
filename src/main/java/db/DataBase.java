@@ -25,4 +25,9 @@ public class DataBase {
     public static Collection<User> findAll() {
         return users.values();
     }
+
+    public static void mockData() {
+        addUser(new User("admin", "admin", "관리자", "admin@email.com"));
+        addUser(new User("qwe", "qwe", "qwe", "qwe@email.com"));
+    }
 }
