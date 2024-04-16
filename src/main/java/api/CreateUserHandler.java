@@ -23,6 +23,6 @@ public class CreateUserHandler implements Handler {
 
         DataBase.addUser(new User(params.get("userId"), params.get("password"), params.get("name"), params.get("email")));
 
-        return HttpResponse.redirect("index.html");
+        return HttpResponse.redirect("/index.html");
     }
 }
