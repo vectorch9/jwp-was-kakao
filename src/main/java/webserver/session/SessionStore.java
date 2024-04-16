@@ -2,6 +2,7 @@ package webserver.session;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 public final class SessionStore {
@@ -17,7 +18,10 @@ public final class SessionStore {
         return session;
     }
 
-    public static Session getSession(String id) {
-        return sessions.get(id);
+    public static Optional<Session> getSession(String id) {
+        if (id == null || !sessions.containsKey(id)) {
+            return Optional.empty();
+        }
+        return Optional.of(sessions.get(id));
     }
 }
